@@ -12,7 +12,7 @@ data <- subset(data,Date<="2007-02-02")
 
 #Plot 2 is a line plot of the Global Active Power over time
 
-#Convert equired column to numeric
+#Convert required column to numeric
 data$Global_active_power <- as.numeric(data$Global_active_power)
 
 #Add a DateTime column

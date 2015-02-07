@@ -12,7 +12,7 @@ data <- subset(data,Date<="2007-02-02")
 
 #Plot 1 is a histogram of the Global Active Power points
 
-#Convert equired column to numeric
+#Convert required column to numeric
 data$Global_active_power <- as.numeric(data$Global_active_power)
 
 #Open a png file for storing and displaying the data
