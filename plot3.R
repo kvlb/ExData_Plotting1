@@ -3,7 +3,7 @@
 #Load File and subset
 #My computer has enough memory I shall read and subset rather than limit the read
 #Load the initial dataset to begin with
-data <- read.table("household_power_consumption.txt", sep=";", header = TRUE, na.strings="?", colClasses = "character")
+data <- read.table("household_power_consumption.txt", sep=";", header = TRUE, na.strings="?", colClasses = c("character","character",rep("numeric",7)))
 #Convert Date column to date format for easier subsetting
 data$Date <- suppressWarnings(as.Date(data$Date,"%d/%m/%Y"))
 #Subset to the appropriate dates
@@ -11,11 +11,6 @@ data <- subset(data,Date>="2007-02-01")
 data <- subset(data,Date<="2007-02-02")
 
 #Plot 3 is a line plot of the 3 sub metering columns over time
-
-#Convert required columns to numeric
-data$Sub_metering_1 <- as.numeric(data$Sub_metering_1)
-data$Sub_metering_2 <- as.numeric(data$Sub_metering_2)
-data$Sub_metering_3 <- as.numeric(data$Sub_metering_3)
 
 #Add a DateTime column
 data$DateTime <- strptime(paste(data$Date, data$Time), "%Y-%m-%d %H:%M:%S")

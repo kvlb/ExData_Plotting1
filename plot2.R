@@ -3,7 +3,7 @@
 #Load File and subset
 #My computer has enough memory I shall read and subset rather than limit the read
 #Load the initial dataset to begin with
-data <- read.table("household_power_consumption.txt", sep=";", header = TRUE, na.strings="?", colClasses = "character")
+data <- read.table("household_power_consumption.txt", sep=";", header = TRUE, na.strings="?", colClasses = c("character","character",rep("numeric",7)))
 #Convert Date column to date format for easier subsetting
 data$Date <- suppressWarnings(as.Date(data$Date,"%d/%m/%Y"))
 #Subset to the appropriate dates
@@ -11,10 +11,6 @@ data <- subset(data,Date>="2007-02-01")
 data <- subset(data,Date<="2007-02-02")
 
 #Plot 2 is a line plot of the Global Active Power over time
-
-#Convert required column to numeric
-data$Global_active_power <- as.numeric(data$Global_active_power)
-
 #Add a DateTime column
 data$DateTime <- strptime(paste(data$Date, data$Time), "%Y-%m-%d %H:%M:%S")
 
